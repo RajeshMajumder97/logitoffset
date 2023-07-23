@@ -1,0 +1,47 @@
+---
+title: "What is offset in Logistic regression?"
+author: "Rajesh Majumder"
+date: "2023-07-23"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+<style type="text/css">
+/* Whole document: */
+body{
+  font-family: Comic Sans MS;
+  font-size: 13pt;
+}
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+font-family: Comic Sans MS;
+  font-size: 20pt;
+}
+.page-header {
+  background-color: #F2994A;  /* fallback for old browsers */
+  background-image: -webkit-linear-gradient(to right, #F2C94C, #F2994A);
+  background-image: linear-gradient(to right, #F2C94C, #F2994A);
+}
+</style>
+
+In logistic regression, an offset variable is a term used to incorporate an exposure variable that represents the "offset" or known exposure level for each observation in the model. Unlike the predictors (independent variables), the offset variable is not estimated or adjusted during the model fitting process. Instead, it is included with a fixed coefficient value of 1.
+
+The use of an offset variable is common when you are modeling rates or proportions in logistic regression. It allows you to account for differences in exposure or observation time across different units while estimating the relationship between the predictors and the binary outcome variable (dependent variable).
+
+The general form of a logistic regression model with an offset variable is:
+$$log(\frac{p}{(1-p)})=\beta_1X_1+\beta_2X_2+......+\beta_pX_p+log(\text{offset})$$
+where,
+
+- **$log(\frac{p}{(1-p)})$** is the log odds of the binary outcome variable (p is the probability of the event occurring).
+
+- **$X_1,X_2,....,X_p$** are the predictor variables (independent variables) with their respective coefficients **$\beta_1,\beta_2,....,\beta_p$**.
+
+- **$log(\text{offset})$** is the log of the known exposure variable (the offset) for each observation.
+
+The offset variable is typically specified as the logarithm of some known value representing the exposure, such as the number of trials or observation time. The inclusion of the offset in the model ensures that the coefficients of the predictors represent the effects on the log odds of the outcome variable per unit change in the predictors, while accounting for the known exposure.
+
+An example use case of an offset variable in logistic regression is modeling disease rates (e.g., infection rates, mortality rates) where the number of cases is the outcome and the known population size (exposure) for each group or location is incorporated as an offset variable.
+
+In summary, an offset variable in logistic regression allows you to model rates or proportions, adjusting for known exposure levels, while estimating the effects of the predictor variables on the log odds of the binary outcome.
+
